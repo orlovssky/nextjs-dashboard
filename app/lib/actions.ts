@@ -32,7 +32,10 @@ const FormSchema = z.object({
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
-export async function createInvoice(prevState: State, formData: FormData) {
+export async function createInvoice(
+  prevState: State,
+  formData: FormData,
+): Promise<State> {
   //Tip: If you're working with forms that have many fields, you may want to consider using the entries() method with JavaScript's Object.fromEntries(). For example:
   // const rawFormData = Object.fromEntries(formData.entries())
 
@@ -74,7 +77,7 @@ export async function updateInvoice(
   id: string,
   prevState: State,
   formData: FormData,
-) {
+): Promise<State> {
   const validatedFields = UpdateInvoice.safeParse({
     customerId: formData.get('customerId'),
     amount: formData.get('amount'),
